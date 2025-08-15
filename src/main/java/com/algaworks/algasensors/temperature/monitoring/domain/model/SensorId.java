@@ -3,6 +3,7 @@ package com.algaworks.algasensors.temperature.monitoring.domain.model;
 import io.hypersistence.tsid.TSID;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,21 +13,22 @@ import java.util.Objects;
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SensorID implements Serializable {
+@EqualsAndHashCode
+public class SensorId implements Serializable {
 
     private TSID value;
 
-    public SensorID(TSID value) {
+    public SensorId(TSID value) {
         Objects.requireNonNull(value);
         this.value = value;
     }
 
-    public SensorID(Long value) {
+    public SensorId(Long value) {
         Objects.requireNonNull(value);
         this.value = TSID.from(value);
     }
 
-    public SensorID(String value) {
+    public SensorId(String value) {
         Objects.requireNonNull(value);
         this.value = TSID.from(value);
     }
