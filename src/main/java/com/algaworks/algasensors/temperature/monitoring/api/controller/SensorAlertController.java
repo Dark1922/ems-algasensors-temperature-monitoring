@@ -57,9 +57,9 @@ public class SensorAlertController {
     private SensorAlert findByIdOrDefault(TSID sensorId, SensorAlertInput sensorAlertInput) {
         return sensorAlertRepository.findById(new SensorId(sensorId))
                 .orElse(SensorAlert.builder()
-                        .id(new SensorId(sensorId))
-                        .maxTemperature(sensorAlertInput.getMaxTemperature())
-                        .minTemperature(sensorAlertInput.getMinTemperature())
-                        .build());
+                    .id(new SensorId(sensorId))
+                    .maxTemperature(sensorAlertInput.getMaxTemperature())
+                    .minTemperature(sensorAlertInput.getMinTemperature())
+                    .build());
     }
 }
