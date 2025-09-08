@@ -5,7 +5,7 @@ spring:
   application.name: temperature-monitoring
   datasource:
     username: sa
-    url: jdbc:h2:file:~/algasensors-temperature-monitoring-db;CASE_INSENSITIVE_IDENTIFIERS=TRUE;
+    url: jdbc:h2:file:~/algasensors-temperature-monitoring-db;CASE_INSENSITIVE_IDENTIFIERS=TRUE;AUTO_SERVER=TRUE #AUTO_SERVER=TRUE para permitir múltiplas conexões no mesmo banco
     driverClassName: org.h2.Driver
     password: '123'
   h2:
@@ -22,3 +22,13 @@ spring:
     port: 5672
     username: rabbitmq
     password: rabbitmq
+    listener:
+      simple:
+        prefetch:
+          count: 4 #padrão 250 valor para teste 4
+
+          #podemos criar mais intancia do monitoring tipo duas aplicação rodando na porta 8082 e 8083
+          #assim o processamento de mensagens fica mais rapido
+          #para isso precisamos mudar a porta do monitoring
+          #e aumentar o prefetch count para 4 ou 5 etc dependendo do sistema e aumentando o consumo
+          #eles não pega as mesmas mensagens

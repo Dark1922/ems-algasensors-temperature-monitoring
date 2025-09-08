@@ -25,7 +25,7 @@ public class RabbitMQListener {
 
     //recomendado usar uma queue para cada listener mais tem como passar mais de um
     //TemperatureLogData pdde ser tanto para entrada quanto para saida de dados
-    @RabbitListener(queues = QUEUE)
+    @RabbitListener(queues = QUEUE, concurrency = "2-3") //pode configurar a concorrencia para ter mais de uma thread processando as mensagens
     @SneakyThrows
     public void handle(@Payload TemperatureLogData temperatureLogData) {
 
