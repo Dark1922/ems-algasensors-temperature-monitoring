@@ -26,6 +26,12 @@ spring:
       simple:
         prefetch:
           count: 4 #padrão 250 valor para teste 4
+        retry:
+            enabled: true
+            initial-interval: 10s
+            max-interval: 30s
+            multiplier: 2
+            max-attempts: 3
 
           #podemos criar mais intancia do monitoring tipo duas aplicação rodando na porta 8082 e 8083
           #assim o processamento de mensagens fica mais rapido
