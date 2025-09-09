@@ -24,10 +24,11 @@ public class TemperatureMonitoringSerivce {
 
     @Transactional
     public void ProcessTemperatureReading(TemperatureLogData temperatureLogData) {
-        log.info("ProcessTemperatureReading");
-        if(temperatureLogData.getValue().equals(10.5)) {
-            throw new RuntimeException("teste error");
-        }
+        //codigo de teste para testar o reprocessament em caso de erro de dlc e mover mensagem para a fila de erro
+//        log.info("ProcessTemperatureReading");
+//        if(temperatureLogData.getValue().equals(10.5)) {
+//            throw new RuntimeException("teste error");
+//        }
         sensorMonitoringRepository.findById(new SensorId(temperatureLogData.getSensorId()))
                 .ifPresentOrElse(sensor -> handleSensorMonitoring(temperatureLogData, sensor),
                         () -> logIgnoredTemprature(temperatureLogData));
